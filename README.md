@@ -71,10 +71,10 @@ allprojects {
 A step by step series of examples that tell you how to get a development env running.
 
 Add the dependency
-[![](https://jitpack.io/v/spylight-zz/KafaAdsLibrary.svg)](https://jitpack.io/#spylight-zz/KafaAdsLibrary)
+[![](https://jitpack.io/v/cahyocool/KafaAds.svg)](https://jitpack.io/#cahyocool/KafaAds)
 ```Groove
 dependencies {
-	implementation 'com.github.spylight-zz:KafaAdsLibrary:2.1.1'
+	  implementation 'com.github.cahyocool:KafaAds:2.1.5'
 }
 ```
 
