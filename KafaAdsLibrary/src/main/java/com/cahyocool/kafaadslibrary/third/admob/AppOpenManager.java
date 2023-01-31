@@ -138,6 +138,9 @@ public class AppOpenManager implements LifecycleObserver, Application.ActivityLi
                             }
                         });
                         break;
+                    case "FBAd":
+
+                        break;
                 }
             } else {
                 AppOpenAd.load(
