@@ -190,7 +190,6 @@ public class KafaAds implements OnAdLoadListener, OnAppLovinAdListener, OnUnityA
 
     public static void initOpenAd(Application app) {
         AppOpenManager appOpenManager = new AppOpenManager(app);
-
     }
 
     public KafaAds(Context context) {
