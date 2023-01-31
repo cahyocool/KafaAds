@@ -74,7 +74,7 @@ Add the dependency
 [![](https://jitpack.io/v/spylight-zz/KafaAdsLibrary.svg)](https://jitpack.io/#spylight-zz/KafaAdsLibrary)
 ```Groove
 dependencies {
-	implementation 'com.github.spylight-zz:KafaAdsLibrary:2.1.5'
+	implementation 'com.github.spylight-zz:KafaAdsLibrary:2.1.1'
 }
 ```
 
