@@ -137,6 +137,7 @@ public class AppOpenManager implements LifecycleObserver, Application.ActivityLi
                                 MaxAppOpen maxAppOpen = new MaxAppOpen(myApplication, KafaAds.getAds().get_backup_openapp());
                             }
                         });
+
                         break;
                     case "FBAd":
 
