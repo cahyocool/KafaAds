@@ -9,7 +9,6 @@ import android.view.View;
 import android.widget.Button;
 
 import com.cahyocool.kafaadslibrary.KafaAds;
-import com.cahyocool.kafaadslibrary.data.Ad;
 import com.cahyocool.kafaadslibrary.models.KafaConst;
 import com.cahyocool.kafaadslibrary.models.KafaModel;
 import com.cahyocool.kafaadslibrary.utils.ObserverTask;

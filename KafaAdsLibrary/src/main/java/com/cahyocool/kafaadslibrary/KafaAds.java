@@ -32,6 +32,7 @@ import com.cahyocool.kafaadslibrary.data.AdName;
 import com.cahyocool.kafaadslibrary.data.AdType;
 import com.cahyocool.kafaadslibrary.models.KafaAppSetting;
 import com.cahyocool.kafaadslibrary.models.KafaModel;
+import com.cahyocool.kafaadslibrary.third.admob.AppOpenManager;
 import com.cahyocool.kafaadslibrary.third.applovin.BaseAppLovinInterstitial;
 import com.cahyocool.kafaadslibrary.third.applovin.BaseAppLovinReward;
 import com.cahyocool.kafaadslibrary.third.admob.BaseInterstitialThirdParty;
@@ -43,9 +44,7 @@ import com.cahyocool.kafaadslibrary.third.unity.OnUnityAdListener;
 import com.cahyocool.kafaadslibrary.third.admob.AdMobBanner;
 import com.cahyocool.kafaadslibrary.third.admob.AdMobInterstitial;
 import com.cahyocool.kafaadslibrary.third.admob.AdMobReward;
-import com.cahyocool.kafaadslibrary.third.admob.AppOpenManager;
 import com.cahyocool.kafaadslibrary.third.admob.TemplateView;
-import com.cahyocool.kafaadslibrary.third.applovin.MaxAppOpen;
 import com.cahyocool.kafaadslibrary.third.applovin.MaxBanner;
 import com.cahyocool.kafaadslibrary.third.applovin.MaxInterstitial;
 import com.cahyocool.kafaadslibrary.third.applovin.MaxRewards;
@@ -66,9 +65,7 @@ import com.google.android.gms.ads.initialization.InitializationStatus;
 import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
 import com.google.android.gms.ads.nativead.NativeAd;
 import com.kafaads.kafaadslibrary.BuildConfig;
-import com.unity3d.ads.IUnityAdsLoadListener;
 import com.unity3d.ads.UnityAds;
-import com.unity3d.ads.UnityAdsShowOptions;
 
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
@@ -76,8 +73,6 @@ import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 import java.util.concurrent.TimeUnit;
-
-import kotlin.Unit;
 
 public class KafaAds implements OnAdLoadListener, OnAppLovinAdListener, OnUnityAdListener {
     private Context context;
@@ -194,21 +189,7 @@ public class KafaAds implements OnAdLoadListener, OnAppLovinAdListener, OnUnityA
     }
 
     public static void initOpenAd(Application app) {
-        if (KafaAds.getAds().get_backup_status().equalsIgnoreCase("1")) {
-            switch (KafaAds.getAds().get_backup_ads()) {
-                case "Applovin":
-                    AppLovinSdk.initializeSdk(app.getApplicationContext(), new AppLovinSdk.SdkInitializationListener() {
-                        @Override
-                        public void onSdkInitialized(final AppLovinSdkConfiguration configuration) {
-                            MaxAppOpen maxAppOpen = new MaxAppOpen(app.getApplicationContext(), KafaAds.getAds().get_backup_openapp());
-                        }
-                    });
-                    break;
-            }
-        } else {
-            AppOpenManager appOpenManager = new AppOpenManager(app);
-        }
-
+        AppOpenManager appOpenManager = new AppOpenManager(app);
     }
 
     public KafaAds(Context context) {

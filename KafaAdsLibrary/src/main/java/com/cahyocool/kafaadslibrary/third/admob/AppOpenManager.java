@@ -13,7 +13,10 @@ import androidx.lifecycle.LifecycleObserver;
 import androidx.lifecycle.OnLifecycleEvent;
 import androidx.lifecycle.ProcessLifecycleOwner;
 
+import com.applovin.sdk.AppLovinSdk;
+import com.applovin.sdk.AppLovinSdkConfiguration;
 import com.cahyocool.kafaadslibrary.KafaAds;
+import com.cahyocool.kafaadslibrary.third.applovin.MaxAppOpen;
 import com.google.android.gms.ads.AdError;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.FullScreenContentCallback;
@@ -125,9 +128,22 @@ public class AppOpenManager implements LifecycleObserver, Application.ActivityLi
         AdRequest request = getAdRequest();
         if (KafaAds.getAds() != null) {
             Log.i(AppOpenManager.class.getSimpleName(), "fetchAd: AdsModel Not NUll : " + KafaAds.getAds().get_openapp());
-            AppOpenAd.load(
-                    myApplication, KafaAds.getAds().get_openapp(), request,
-                    AppOpenAd.APP_OPEN_AD_ORIENTATION_PORTRAIT, loadCallback);
+            if (KafaAds.getAds().get_backup_status().equalsIgnoreCase("1")) {
+                switch (KafaAds.getAds().get_backup_ads()) {
+                    case "Applovin":
+                        AppLovinSdk.initializeSdk(myApplication, new AppLovinSdk.SdkInitializationListener() {
+                            @Override
+                            public void onSdkInitialized(final AppLovinSdkConfiguration configuration) {
+                                MaxAppOpen maxAppOpen = new MaxAppOpen(myApplication, KafaAds.getAds().get_backup_openapp());
+                            }
+                        });
+                        break;
+                }
+            } else {
+                AppOpenAd.load(
+                        myApplication, KafaAds.getAds().get_openapp(), request,
+                        AppOpenAd.APP_OPEN_AD_ORIENTATION_PORTRAIT, loadCallback);
+            }
         } else {
             Log.i(AppOpenManager.class.getSimpleName(), "fetchAd: AdsModel NUll using default");
             AppOpenAd.load(
